@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINKI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        const ROOM_ID = "<%= roomID %>";
+    </script>
+</head>
+<body>
+    <div id="main">
+        <div id="main__left">
+            <div id="main__videos">
+                <div id="videos-grid"></div>
+            </div>
+            <div id="main__controls">
+                <div class="main__controls__block">
+                    <div class="main__controls__button" id="mute_button">
+                        <i class="fa fa-microphone"></i>
+                        <span>Mute</span>
+                    </div>
+                    <div class="main__controls__button" id="hide_button">
+                        <i class="fa fa-video-camera"></i>
+                        <span>Stop video</span>
+                    </div>
+                </div>
+                <div class="main__controls__block">
+                    <div class="main__controls__button">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security</span>
+                    </div>
+                    <div class="main__controls__button">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Participants</span>
+                    </div>
+                    <div class="main__controls__button" id="chat_button">
+                        <i class="fas fa-comment-alt"></i>
+                        <span>Chat</span>
+                    </div>
+                </div>
+                <div class="main__controls__block" id="leave_button">
+                   <div id="leave__button">Leave</div> 
+                </div>
+            </div>
+        </div>
+        <div id="main__right">
+            <div id="main__right__header">Chat</div>
+            <div id="main__chat__window">
+                <ul id="messages"></ul>
+            </div>
+            <div id="chat__message__block">
+                <input type="text" name="Message" placeholder="Type a message" id="chat_message">
+                <button id="send_btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" defer></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
