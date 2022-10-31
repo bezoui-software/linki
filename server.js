@@ -1,18 +1,16 @@
-const express = require("express");
-const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const io = require('socket.io')(server);
-const { v4: uuidv4 } = require("uuid");
-const { ExpressPeerServer } = require("peer");
-var peerExpress = require('express');
-var peerApp = peerExpress();
-var peerServer = require('http').createServer(peerApp);
-var options = { debug: true }
-var peerPort = 443;
+const express = require('express')
+const app = express()
+// const cors = require('cors')
+// app.use(cors())
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const { ExpressPeerServer } = require('peer');
+const peerServer = ExpressPeerServer(server, {
+  debug: true
+});
+const { v4: uuidV4 } = require('uuid')
 
-peerApp.use('/peerjs', ExpressPeerServer(peerServer, options));
-
+app.use('/peerjs', peerServer);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
