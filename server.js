@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     res.redirect(`/${uuidV4()}`)
 })
 
-const PORT = 3000;
+const PORT = process.env.PORT||3000;
 
 app.get("/:roomID", (req, res) => {
     res.render('room', { roomID: req.params.roomID });
