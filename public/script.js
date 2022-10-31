@@ -14,18 +14,14 @@ function setup() {
 
 function run() {
     var origin = window.location.origin;
-    socket = io(origin)
+    socket = io("/")
     peers = {};
 
     videos_grid = document.getElementById("videos-grid")
     my_video = document.createElement("video");
     my_video.muted = true;
 
-    peer = new Peer(undefined, {
-        host: window.location.hostname,
-        port: "443",
-        path: "/peerjs"
-    })
+    peer = new Peer();
 
     peer.on("open", userID => {
             USER_ID = userID;

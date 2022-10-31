@@ -1,30 +1,19 @@
-const express = require("express");
-const app = express();
+//Create our express and socket.io servers
+const express = require('express')
+const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const {v4: uuidV4} = require('uuid')
 
-const { ExpressPeerServer } = require('peer');
+app.set('view engine', 'ejs') // Tell Express we are using EJS
+app.use(express.static('public')) // Tell express to pull the client script from the public folder
 
-const http = require('http');
-
-const server = http.createServer(app);
-const peerServer = ExpressPeerServer(server, {
-  debug: true,
-  path: '/peerjs'
-});
-
-const { Server } = require("socket.io");
-const io = new Server(server);
-
-const path = require("path");
-const { v4: uuidv4 } = require("uuid");
-const PORT = process.env.PORT || 3000;
-
-app.use('/', peerServer);
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-    res.redirect(`/${uuidv4()}`);
+// If they join the base link, generate a random UUID and send them to a new room with said UUID
+app.get('/', (req, res) => {
+    res.redirect(`/${uuidV4()}`)
 })
+
+const PORT = 3000;
 
 app.get("/:roomID", (req, res) => {
     res.render('room', { roomID: req.params.roomID });
