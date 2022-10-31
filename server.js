@@ -15,7 +15,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const path = require("path");
-const { uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 const PORT = process.env.PORT || 3000;
 
 app.use('/', peerServer);
