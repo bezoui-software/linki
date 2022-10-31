@@ -24,7 +24,7 @@ function run() {
     peer = new Peer(undefined, {
         host: "sheltered-beach-38704.herokuapp.com",
         secure: true,
-        port: "443",
+        port: "1234",
         path: "/peerjs"
     })
 

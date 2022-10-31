@@ -9,6 +9,7 @@ const peerServer = ExpressPeerServer(server, {
   debug: true
 });
 const { v4: uuidV4 } = require('uuid')
+peerPort = 1234;
 
 app.use('/peerjs', peerServer);
 app.set("view engine", "ejs");
@@ -43,5 +44,5 @@ io.on("connection", socket => {
 })
 
 server.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'));
-//peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
+peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
 
