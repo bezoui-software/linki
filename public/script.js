@@ -23,7 +23,7 @@ function run() {
 
     peer = new Peer(undefined, {
         host: "/",
-        port: "9000",
+        port: "443",
         path: "/peerjs"
     })
 
