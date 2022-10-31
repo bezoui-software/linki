@@ -50,6 +50,6 @@ io.on("connection", socket => {
     })
 })
 
-server.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'));
+server.listen(PORT, () => console.log('Listening on port', PORT));
 //peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
 
