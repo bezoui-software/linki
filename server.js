@@ -1,17 +1,24 @@
-const express = require('express')
-const app = express()
-// const cors = require('cors')
-// app.use(cors())
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
-const { ExpressPeerServer } = require('peer');
-const peerServer = ExpressPeerServer(server, {
-  debug: true
-});
-const { v4: uuidV4 } = require('uuid')
-peerPort = 1234;
+const express = require("express");
+const app = express();
 
-app.use('/peerjs', peerServer);
+const { ExpressPeerServer } = require('peer');
+
+const http = require('http');
+
+const server = http.createServer(app);
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+  path: '/peerjs'
+});
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+const path = require("path");
+const { v4: uuidV4 } = require("uuid");
+const PORT = process.env.PORT || 3000;
+
+app.use('/', peerServer);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -44,5 +51,5 @@ io.on("connection", socket => {
 })
 
 server.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'));
-peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
+//peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
 

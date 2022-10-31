@@ -22,10 +22,10 @@ function run() {
     my_video.muted = true;
 
     peer = new Peer(undefined, {
-        host: "sheltered-beach-38704.herokuapp.com",
+        host: window.location.hostname,
         secure: true,
-        port: "1234",
-        path: "/peerjs"
+        port: window.location.port,
+        path: "peerjs"
     })
 
     peer.on("open", userID => {
