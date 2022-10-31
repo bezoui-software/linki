@@ -9,7 +9,7 @@ var peerExpress = require('express');
 var peerApp = peerExpress();
 var peerServer = require('http').createServer(peerApp);
 var options = { debug: true }
-var peerPort = 443;
+var peerPort = 9000;
 
 peerApp.use('/peerjs', ExpressPeerServer(peerServer, options));
 
@@ -44,6 +44,6 @@ io.on("connection", socket => {
     })
 })
 
-server.listen(process.env.PORT || 3000);
-peerServer.listen(peerPort);
+server.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'));
+peerServer.listen(peerPort, () => console.log("Peer server listening on port", peerPort));
 
