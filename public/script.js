@@ -21,11 +21,7 @@ function run() {
     my_video = document.createElement("video");
     my_video.muted = true;
 
-    peer = new Peer(undefined, {
-        path: '/peerjs',
-        host: window.location.hostname,
-        port: '443'
-      });
+    peer = new Peer();
 
     peer.on("open", userID => {
             USER_ID = userID;
